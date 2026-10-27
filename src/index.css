@@ -1,0 +1,360 @@
+
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #172033;
+  background: #f3f6fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 22px;
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #155eef;
+  color: #fff;
+  font-weight: 800;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.topbar p {
+  margin: 4px 0 0;
+  color: #667085;
+  font-size: 13px;
+}
+
+.ghana-tag {
+  margin-left: auto;
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: #eaf2ff;
+  color: #155eef;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 390px minmax(0, 1fr);
+  min-height: calc(100vh - 79px);
+}
+
+.sidebar {
+  position: relative;
+  z-index: 500;
+  padding: 22px;
+  background: #fff;
+  border-right: 1px solid #e2e8f0;
+}
+
+.sidebar h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.muted {
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.field {
+  position: relative;
+  margin-top: 22px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.search-row {
+  display: flex;
+  gap: 7px;
+}
+
+input,
+select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  background: #fff;
+  color: #172033;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid #b2ccff;
+  border-color: #155eef;
+}
+
+.search-row button,
+.gps-button {
+  padding: 10px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  background: #fff;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.search-row button {
+  flex-shrink: 0;
+}
+
+.gps-button {
+  width: 100%;
+  margin-top: 9px;
+  color: #155eef;
+  border-color: #b2ccff;
+}
+
+.route-button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #155eef;
+  color: #fff;
+  font-weight: 800;
+}
+
+.route-button:hover {
+  background: #004eeb;
+}
+
+.results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  max-height: 220px;
+  overflow-y: auto;
+  margin-top: 4px;
+  padding: 5px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 8px 25px #10182818;
+}
+
+.result {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.result:hover {
+  background: #f0f5ff;
+}
+
+.error-message {
+  margin-top: 14px;
+  padding: 11px;
+  border-radius: 8px;
+  background: #fff1f0;
+  color: #b42318;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.map-panel {
+  position: relative;
+  min-width: 0;
+  min-height: 650px;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  min-height: 650px;
+  background: #e9eff5;
+}
+
+.map-label {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px #10182818;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #12b76a;
+}
+
+.route-summary {
+  margin-top: 22px;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8faff;
+}
+
+.route-summary h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.stats strong {
+  color: #155eef;
+  font-size: 19px;
+}
+
+.stats span {
+  color: #667085;
+  font-size: 12px;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.steps {
+  padding-left: 23px;
+}
+
+.steps li {
+  padding: 7px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.steps li span {
+  display: block;
+  color: #667085;
+  font-size: 12px;
+}
+
+.disclaimer {
+  margin-top: 24px;
+  color: #667085;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    padding: 13px;
+  }
+
+  .topbar h1 {
+    font-size: 17px;
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ghana-tag {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar {
+    padding: 18px 14px;
+    border-right: 0;
+  }
+
+  .map-panel,
+  .map {
+    min-height: 440px;
+    height: 60vh;
+  }
+
+  .field {
+    margin-top: 17px;
+  }
+}
